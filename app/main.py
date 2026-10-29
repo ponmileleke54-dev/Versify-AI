@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 
+from fastapi import APIRouter
+from app.api.v1.endpoints import chat
+
+api_router = APIRouter()
+api_router.include_router(chat.router, prefix="/chat", tags=["Chat & AI Reasoning"])
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version="1.0.0",
