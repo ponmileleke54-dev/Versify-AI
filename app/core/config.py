@@ -1,12 +1,11 @@
-from pydantic_settings import BaseSettings
+import os
+from dotenv import load_dotenv
 
-class Settings(BaseSettings):
+# Load environment variables from .env file explicitly
+load_dotenv()
+
+class Settings:
     PROJECT_NAME: str = "Versify AI Engine"
-    API_V1_STR: str = "/api/v1"
-    OPENAI_API_KEY: str = ""
-    
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
 
 settings = Settings()
